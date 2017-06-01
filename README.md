@@ -18,6 +18,6 @@ step２：Add the dependency
 
 ```
 dependencies { 
-	compile 'com.github.didalogistics:SkinGallery:1.0.0'
+	compile 'com.github.dida-logistics:SkinGallery:1.0.0'
 }
 ```
