@@ -1,0 +1,2 @@
+# SkinGallery
+一款基于GalleryFinal的图片选择框架，解决原框架内存泄漏的问题
