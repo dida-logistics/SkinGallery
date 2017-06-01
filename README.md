@@ -1,17 +1,23 @@
 # SkinGallery
+
 一款基于GalleryFinal的图片选择框架，解决原框架内存泄漏的问题
 
-Step 1：
-	Add it in your root build.gradle at the end of repositories:
-	allprojects {
+####集成步骤
+step１：Add it in your root build.gradle at the end of repositories
+
+```
+allprojects {
 		repositories {
 			...
 			maven { url 'https://www.jitpack.io' }
 		}
-	}
-	
-Step 2：
-	Add the dependency：
-	dependencies {
-	        compile 'com.github.dida-logistics:SkinGallery:1.0.0'
-	}
+}
+```
+
+step２：Add the dependency
+
+```
+dependencies { 
+	compile 'com.github.didalogistics:SkinGallery:1.0.0'
+}
+```
