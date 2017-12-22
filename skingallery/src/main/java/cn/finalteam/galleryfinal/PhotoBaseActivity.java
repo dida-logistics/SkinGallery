@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -172,7 +173,8 @@ public abstract class PhotoBaseActivity extends Activity implements EasyPermissi
             if (resultCode == RESULT_OK && mTakePhotoUri != null) {
                 try {
                     final String path = TUriParse.getFilePathWithUri(mTakePhotoUri, GalleryFinal.getApplication());
-                    if (new File(path).exists()) {
+                    File resultFile = new File(path);
+                    if (resultFile.exists()) {
                         final PhotoInfo info = new PhotoInfo();
                         info.setPhotoId(Utils.getRandom(10000, 99999));
                         info.setPhotoPath(path);

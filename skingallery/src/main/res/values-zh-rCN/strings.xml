@@ -17,7 +17,7 @@
 <resources>
     <string name="gallery">手机相册</string>
     <string name="all_photo">全部图片</string>
-    <string name="selected">已选(%1$s/%2$s)</string>
+    <string name="selected">已选(%1$d/%2$d)</string>
     <string name="folder_photo_size">共%1$d张</string>
     <string name="photo_edit">图片编辑</string>
     <string name="photo_crop">图片裁剪</string>

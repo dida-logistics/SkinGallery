@@ -55,7 +55,8 @@ import cn.finalteam.toolsfinal.io.FilenameUtils;
  * Author:pengjianbo
  * Date:15/10/10 下午3:54
  */
-public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnClickListener, AdapterView
+        .OnItemClickListener {
 
     private final int HANLDER_TAKE_PHOTO_EVENT = 1000;
     private final int HANDLER_REFRESH_LIST_EVENT = 1002;
@@ -96,6 +97,9 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mSelectPhotoList = (ArrayList<PhotoInfo>) getIntent().getSerializableExtra("selectPhotoMap");
+        if (mSelectPhotoList == null) {
+            mSelectPhotoList = new ArrayList<>();
+        }
     }
 
     private Handler mHanlder = new Handler() {
@@ -366,7 +370,8 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
             }
         } else if (id == R.id.iv_take_photo) {
             //判断是否达到多选最大数量
-            if (GalleryFinal.getFunctionConfig().isMutiSelect() && mSelectPhotoList.size() == GalleryFinal.getFunctionConfig().getMaxSize()) {
+            if (GalleryFinal.getFunctionConfig().isMutiSelect() && mSelectPhotoList.size() == GalleryFinal
+                    .getFunctionConfig().getMaxSize()) {
                 toast(getString(R.string.select_max_tips));
                 return;
             }
@@ -458,7 +463,8 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
         }
         boolean checked;
         if (!mSelectPhotoList.contains(info)) {
-            if (GalleryFinal.getFunctionConfig().isMutiSelect() && mSelectPhotoList.size() == GalleryFinal.getFunctionConfig().getMaxSize()) {
+            if (GalleryFinal.getFunctionConfig().isMutiSelect() && mSelectPhotoList.size() == GalleryFinal
+                    .getFunctionConfig().getMaxSize()) {
                 toast(getString(R.string.select_max_tips));
                 return;
             } else {
@@ -493,7 +499,8 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
     }
 
     public void refreshSelectCount() {
-        mTvChooseCount.setText(getString(R.string.selected, mSelectPhotoList.size(), GalleryFinal.getFunctionConfig().getMaxSize()));
+        mTvChooseCount.setText(getString(R.string.selected, mSelectPhotoList.size(), GalleryFinal.getFunctionConfig()
+                .getMaxSize()));
         if (mSelectPhotoList.size() > 0 && GalleryFinal.getFunctionConfig().isMutiSelect()) {
             mIvClear.setVisibility(View.VISIBLE);
         } else {
@@ -543,7 +550,8 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
                 super.run();
 
                 mAllPhotoFolderList.clear();
-                List<PhotoFolderInfo> allFolderList = PhotoTools.getAllPhotoFolder(PhotoSelectActivity.this, mSelectPhotoList);
+                List<PhotoFolderInfo> allFolderList = PhotoTools.getAllPhotoFolder(PhotoSelectActivity.this,
+                        mSelectPhotoList);
                 mAllPhotoFolderList.addAll(allFolderList);
 
                 mCurPhotoList.clear();
@@ -591,7 +599,9 @@ public class PhotoSelectActivity extends PhotoBaseActivity implements View.OnCli
     protected void onDestroy() {
         super.onDestroy();
         mPhotoTargetFolder = null;
-        mSelectPhotoList.clear();
+        if (mSelectPhotoList != null) {
+            mSelectPhotoList.clear();
+        }
         System.gc();
     }
 }

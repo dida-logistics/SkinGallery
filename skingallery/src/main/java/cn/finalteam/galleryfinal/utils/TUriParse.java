@@ -53,7 +53,7 @@ public class TUriParse {
         }
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             File picture = getFileWithUri(uri, context);
-            String picturePath = picture == null ? null : picture.getPath();
+            String picturePath = picture == null ? null : picture.getAbsolutePath();
             if (TextUtils.isEmpty(picturePath))
                 throw new TException(TExceptionType.TYPE_URI_PARSE_FAIL);
             if (!TImageFiles.checkMimeType(context, TImageFiles.getMimeType(context, uri)))
@@ -76,7 +76,8 @@ public class TUriParse {
         String scheme = uri.getScheme();
         if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
+            Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
+            //从系统表中查询指定Uri对应的照片
             if (cursor != null) {
                 cursor.moveToFirst();
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
